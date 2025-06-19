@@ -1,0 +1,14 @@
+services:
+  cups:
+    image: cups:2.4.12
+    container_name: cups
+    restart: unless-stopped
+    tty: true
+    # Expose port 631 for CUPS web interface
+    ports:
+      - "631:631"
+
+    # Bind mount for cups config files and logs
+    volumes:
+      - ./container/config:/etc/cups
+      - ./container/logs:/var/log/cups
